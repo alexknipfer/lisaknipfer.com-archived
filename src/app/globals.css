@@ -22,3 +22,7 @@
     @apply min-h-screen;
   }
 }
+
+* {
+  box-sizing: border-box;
+}
