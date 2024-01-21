@@ -18,7 +18,6 @@ export default function Sidebar({ pages }: Props) {
 
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
-      console.warn('event.key', event.key);
       if (event.key.match(/^\d+$/)) {
         const index = parseInt(event.key, 10) - 1;
 
@@ -28,13 +27,12 @@ export default function Sidebar({ pages }: Props) {
       }
     };
 
-    console.warn('adding event listener');
     document.addEventListener('keydown', handleKeydown);
 
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, []);
+  }, [pages]);
 
   return (
     <div className="w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm xl:w-72">
