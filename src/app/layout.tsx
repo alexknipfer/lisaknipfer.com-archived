@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
 import './globals.css';
+import Sidebar from '@/components/sidebar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <main className="flex bg-white">
-          <div className="w-60 bg-zinc-50 border-r border-zinc-200 overflow-auto shrink-0"></div>
+          <Sidebar />
           <div className="w-full pt-8 px-8">{children}</div>
         </main>
       </body>
