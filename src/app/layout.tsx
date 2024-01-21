@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import Sidebar from '@/components/sidebar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,8 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="min-h-screen bg-white">{children}</main>
+      <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
+        <main className="flex bg-white">
+          <Sidebar />
+          <div className="w-full pt-8 px-8">{children}</div>
+        </main>
       </body>
     </html>
   );
