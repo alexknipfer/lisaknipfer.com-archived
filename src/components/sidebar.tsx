@@ -5,10 +5,14 @@ import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { SidebarRoutes } from '@/config/route-config';
 import { cn } from '@/lib/utils';
+import { SanityPage } from '@/types/sanity-page.interface';
 
-export default function Sidebar() {
+interface Props {
+  pages: Array<SanityPage>;
+}
+
+export default function Sidebar({ pages }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -17,8 +21,8 @@ export default function Sidebar() {
       if (event.key.match(/^\d+$/)) {
         const index = parseInt(event.key, 10) - 1;
 
-        if (index < SidebarRoutes.length) {
-          router.push(SidebarRoutes[index].template);
+        if (index < pages.length) {
+          router.push(pages[index].slug);
         }
       }
     };
@@ -28,7 +32,7 @@ export default function Sidebar() {
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  });
+  }, [pages]);
 
   return (
     <div className="w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm xl:w-72">
@@ -46,14 +50,13 @@ export default function Sidebar() {
         </div>
       </Link>
       <div className="flex flex-col gap-1">
-        {SidebarRoutes.map(({ template, label, icon }, index) => {
-          const Icon = icon;
-          const isCurrentPath = pathname === template;
+        {pages.map(({ title, slug, sidebarIcon }, index) => {
+          const isCurrentPath = pathname === slug;
 
           return (
             <Link
-              key={template}
-              href={template}
+              key={slug}
+              href={slug}
               className={cn(
                 'flex items-center justify-between rounded-lg p-2 text-pink-800 transition duration-200',
                 {
@@ -63,8 +66,11 @@ export default function Sidebar() {
               )}
             >
               <span className="flex items-center gap-2">
-                <Icon size={16} />
-                <span className="font-medium">{label}</span>
+                <span
+                  className="h-4 w-4"
+                  dangerouslySetInnerHTML={{ __html: sidebarIcon }}
+                />
+                <span className="font-medium">{title}</span>
               </span>
               <span
                 className={cn(
