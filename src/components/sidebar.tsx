@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { cn } from '@/lib/utils';
-import { SanityPage } from '@/types/sanity-page.interface';
+import { cn, getSlugPath } from '@/lib/utils';
+import { SanityPage } from '@/types/sanity';
 
 interface Props {
   pages: Array<SanityPage>;
@@ -22,7 +22,7 @@ export default function Sidebar({ pages }: Props) {
         const index = parseInt(event.key, 10) - 1;
 
         if (index < pages.length) {
-          router.push(pages[index].slug);
+          router.push(getSlugPath(pages[index].slug));
         }
       }
     };
@@ -51,12 +51,13 @@ export default function Sidebar({ pages }: Props) {
       </Link>
       <div className="flex flex-col gap-1">
         {pages.map(({ title, slug, sidebarIcon }, index) => {
-          const isCurrentPath = pathname === slug;
+          const slugPath = getSlugPath(slug);
+          const isCurrentPath = pathname === slugPath;
 
           return (
             <Link
-              key={slug}
-              href={slug}
+              key={slugPath}
+              href={slugPath}
               className={cn(
                 'flex items-center justify-between rounded-lg p-2 text-pink-800 transition duration-200',
                 {
