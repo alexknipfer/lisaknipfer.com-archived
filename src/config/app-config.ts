@@ -14,6 +14,7 @@ export const appConfig = {
     dataset: loadEnvVar('NEXT_PUBLIC_SANITY_DATASET'),
     apiVersion: loadEnvVar('NEXT_PUBLIC_SANITY_API_VERSION'),
     revalidateSecret: loadEnvVar('SANITY_REVALIDATE_SECRET'),
+    homePageId: loadEnvVar('SANITY_HOME_PAGE_ID'),
   },
 };
 
