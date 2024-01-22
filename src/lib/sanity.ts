@@ -16,32 +16,29 @@ export class Sanity {
     });
   }
 
-  public getPages() {
+  public getPages(pageTypes = ['page']) {
     return this.sanityFetch<Array<SanityPage>>({
       query: `
-        *[_type == 'page'] | order(sidebarOrder asc) {
+        *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
           title,
           sidebarOrder,
           sidebarIcon,
           slug
         }
       `,
-      tags: ['page'],
+      tags: ['page', 'home'],
     });
   }
 
-  public getPageById(id: string) {
+  public getHomePage() {
     return this.sanityFetch<SanityPageWithBuilder>({
       query: `
-        *[_type == 'page' && _id == $id][0] {
+        *[_type == 'home'][0] {
           title,
           ${this.pageBuilderQuery}
         }
       `,
-      params: {
-        id,
-      },
-      tags: ['page'],
+      tags: ['home'],
     });
   }
 

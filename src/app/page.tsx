@@ -5,7 +5,7 @@ import { appConfig } from '@/config/app-config';
 import { sanity } from '@/lib/sanity';
 
 export default async function Home() {
-  const response = await sanity.getPageById(appConfig.sanity.homePageId);
+  const response = await sanity.getHomePage();
 
   return (
     <ScrollView>
