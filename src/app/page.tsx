@@ -1,18 +1,21 @@
-import Heading from '@/components/heading';
-import PageContent from '@/components/page-content';
+import { Heading } from '@/components/heading';
+import { PageContent } from '@/components/page-content';
+import { PageWrapper } from '@/components/page-wrapper';
 import { ScrollView } from '@/components/scroll-view';
-import { appConfig } from '@/config/app-config';
+import { renderPageBuilderComponent } from '@/lib/page-builder';
 import { sanity } from '@/lib/sanity';
 
 export default async function Home() {
-  const response = await sanity.getHomePage();
+  const page = await sanity.getHomePage();
 
   return (
     <ScrollView>
-      <Heading level="h1">{response.title}</Heading>
-      <PageContent>
-        <p>This is the about me section</p>
-      </PageContent>
+      <PageWrapper>
+        <Heading level="h1">{page.title}</Heading>
+        <PageContent>
+          {page.pageBuilder.map(renderPageBuilderComponent)}
+        </PageContent>
+      </PageWrapper>
     </ScrollView>
   );
 }
