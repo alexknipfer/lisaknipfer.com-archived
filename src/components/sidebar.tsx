@@ -32,7 +32,7 @@ export default function Sidebar({ pages }: Props) {
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, [pages]);
+  }, [router, pages]);
 
   return (
     <div className="w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm xl:w-72">
@@ -50,13 +50,13 @@ export default function Sidebar({ pages }: Props) {
         </div>
       </Link>
       <div className="flex flex-col gap-1">
-        {pages.map(({ title, slug, sidebarIcon }, index) => {
+        {pages.map(({ title, slug, sidebarIcon, _id }, index) => {
           const slugPath = getSlugPath(slug);
           const isCurrentPath = pathname === slugPath;
 
           return (
             <Link
-              key={slugPath}
+              key={_id}
               href={slugPath}
               className={cn(
                 'flex items-center justify-between rounded-lg p-2 text-pink-800 transition duration-200',

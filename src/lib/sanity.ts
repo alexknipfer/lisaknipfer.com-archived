@@ -20,6 +20,7 @@ export class Sanity {
     return this.sanityFetch<Array<SanityPage>>({
       query: `
         *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
+          _id,
           title,
           sidebarOrder,
           sidebarIcon,
