@@ -82,7 +82,7 @@ export class Sanity {
           title,
           description
         },
-        _type == 'timeline' => @-> {
+        _type == 'timeline' => {
           _type,
           name,
           timelineYears | order(year desc)
