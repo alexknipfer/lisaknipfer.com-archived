@@ -1,7 +1,7 @@
-import { PageDescription } from '@/types/sanity';
+import { PageDescriptionContent } from '@/types/sanity';
 
 interface Props {
-  content: PageDescription;
+  content: PageDescriptionContent;
 }
 
 export function PageDescription({ content }: Props) {
