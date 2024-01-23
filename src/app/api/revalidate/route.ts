@@ -23,6 +23,8 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
 
+    console.info('REVALIDATE TAG: ', body._type);
+    console.info('REVALIDATE BODY', JSON.stringify(body));
     revalidateTag(body._type);
 
     return NextResponse.json({ body });
