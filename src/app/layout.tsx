@@ -24,7 +24,7 @@ export default async function RootLayout({
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <main className="flex bg-white">
           <Sidebar pages={pages} />
-          <div className="w-full px-8 pt-8">{children}</div>
+          <div>{children}</div>
         </main>
       </body>
     </html>
