@@ -1,5 +1,8 @@
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
+import { PageContent } from '@/components/page-content';
+import { PageWrapper } from '@/components/page-wrapper';
 import { ScrollView } from '@/components/scroll-view';
+import { renderPageBuilderComponent } from '@/lib/page-builder';
 import { sanity } from '@/lib/sanity';
 
 export default async function DynamicPage({
@@ -7,11 +10,16 @@ export default async function DynamicPage({
 }: {
   params: { slug: string };
 }) {
-  const response = await sanity.getPageBySlug(params.slug);
+  const page = await sanity.getPageBySlug(params.slug);
 
   return (
     <ScrollView>
-      <Heading level="h1">{response.title}</Heading>
+      <PageWrapper>
+        <Heading level="h1">{page.title}</Heading>
+        <PageContent>
+          {page.pageBuilder.map(renderPageBuilderComponent)}
+        </PageContent>
+      </PageWrapper>
     </ScrollView>
   );
 }
