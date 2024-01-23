@@ -7,24 +7,25 @@ export enum PageContentBuilderType {
   TIMELINE_ITEM = 'timelineItem',
 }
 
-export type PageContentType = PageDescription | Timeline;
+export type PageContentType = PageDescriptionContent | Timeline;
 
 interface SanityArrayItemBase {
   _key: string;
 }
 
 export interface SanityPageWithBuilder extends SanityPage {
-  pageBuilder: Array<PageDescription | Timeline>;
+  pageBuilder: Array<PageDescriptionContent | Timeline>;
 }
 
 export interface SanityPage {
+  _id: string;
   title: string;
   sidebarOrder: number;
   sidebarIcon: keyof typeof dynamicIconImports;
   slug: Slug;
 }
 
-export interface PageDescription {
+export interface PageDescriptionContent {
   _type: PageContentBuilderType.PAGE_DESCRIPTION;
   title: string;
   description: string;
