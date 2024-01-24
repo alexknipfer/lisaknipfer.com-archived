@@ -6,13 +6,13 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn, getSlugPath } from '@/lib/utils';
-import { SanityPage } from '@/types/sanity';
+import { MenuItem } from '@/types/sanity';
 
 interface Props {
-  pages: Array<SanityPage>;
+  menuItems: Array<MenuItem>;
 }
 
-export default function Sidebar({ pages }: Props) {
+export default function Sidebar({ menuItems }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -21,8 +21,8 @@ export default function Sidebar({ pages }: Props) {
       if (event.key.match(/^\d+$/)) {
         const index = parseInt(event.key, 10) - 1;
 
-        if (index < pages.length) {
-          router.push(getSlugPath(pages[index].slug));
+        if (index < menuItems.length) {
+          router.push(getSlugPath(menuItems[index].slug));
         }
       }
     };
@@ -32,7 +32,7 @@ export default function Sidebar({ pages }: Props) {
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, [router, pages]);
+  }, [router, menuItems]);
 
   return (
     <div className="w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm xl:w-72">
@@ -50,13 +50,13 @@ export default function Sidebar({ pages }: Props) {
         </div>
       </Link>
       <div className="flex flex-col gap-1">
-        {pages.map(({ title, slug, sidebarIcon, _id }, index) => {
+        {menuItems.map(({ title, slug, sidebarIcon }, index) => {
           const slugPath = getSlugPath(slug);
           const isCurrentPath = pathname === slugPath;
 
           return (
             <Link
-              key={_id}
+              key={title}
               href={slugPath}
               className={cn(
                 'flex items-center justify-between rounded-lg p-2 text-pink-800 transition duration-200',
