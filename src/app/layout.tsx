@@ -17,7 +17,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pages = await sanity.getDynamicPagesWithHomePage();
+  const pages = await sanity.getPages(['home', 'page']);
 
   return (
     <html lang="en">
