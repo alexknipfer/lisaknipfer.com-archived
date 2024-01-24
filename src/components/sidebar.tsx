@@ -16,6 +16,8 @@ export default function Sidebar({ pages }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
+  console.info('Sidebar', { pages, pathname });
+
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.key.match(/^\d+$/)) {
