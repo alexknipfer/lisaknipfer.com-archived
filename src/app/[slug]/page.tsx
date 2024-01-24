@@ -10,25 +10,24 @@ export default async function DynamicPage({
 }: {
   params: { slug: string };
 }) {
-  // const page = await sanity.getPageBySlug(params.slug);
+  const page = await sanity.getPageBySlug(params.slug);
 
   return (
-    <h3>Testing</h3>
-    // <ScrollView>
-    //   <PageWrapper>
-    //     <Heading level="h1">{page.title}</Heading>
-    //     <PageContent>
-    //       <PageBuilder pageBuilder={page.pageBuilder} />
-    //     </PageContent>
-    //   </PageWrapper>
-    // </ScrollView>
+    <ScrollView>
+      <PageWrapper>
+        <Heading level="h1">{page.title}</Heading>
+        <PageContent>
+          <PageBuilder pageBuilder={page.pageBuilder} />
+        </PageContent>
+      </PageWrapper>
+    </ScrollView>
   );
 }
 
-export async function generateStaticParams() {
-  const pages = await sanity.getPages();
+// export async function generateStaticParams() {
+//   const pages = await sanity.getPages();
 
-  return pages.map((page) => ({
-    slug: page.slug.current,
-  }));
-}
+//   return pages.map((page) => ({
+//     slug: page.slug.current,
+//   }));
+// }
