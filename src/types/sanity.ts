@@ -13,6 +13,12 @@ interface SanityArrayItemBase {
   _key: string;
 }
 
+export interface MenuItem {
+  title: string;
+  sidebarIcon: string;
+  slug: string | null;
+}
+
 export interface SanityPageWithBuilder extends SanityPage {
   pageBuilder: Array<PageDescriptionContent | Timeline>;
 }

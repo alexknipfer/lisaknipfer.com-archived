@@ -17,13 +17,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pages = await sanity.getPages(['home', 'page']);
+  const menuItems = await sanity.getMenuItems();
 
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <main className="flex bg-white">
-          <Sidebar pages={pages} />
+          <Sidebar menuItems={menuItems} />
           <div>{children}</div>
         </main>
       </body>

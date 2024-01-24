@@ -2,7 +2,7 @@ import 'server-only';
 import { createClient, QueryParams, SanityClient } from 'next-sanity';
 
 import { appConfig } from '@/config/app-config';
-import { SanityPage, SanityPageWithBuilder } from '@/types/sanity';
+import { MenuItem, SanityPage, SanityPageWithBuilder } from '@/types/sanity';
 
 export class Sanity {
   private client: SanityClient;
@@ -13,6 +13,19 @@ export class Sanity {
       dataset: appConfig.sanity.dataset,
       apiVersion: appConfig.sanity.apiVersion,
       useCdn: false,
+    });
+  }
+
+  public getMenuItems() {
+    return this.sanityFetch<Array<MenuItem>>({
+      query: `
+        *[_type == 'menuItem'] {
+          title,
+          sidebarIcon,
+          slug
+        }
+      `,
+      tags: ['menuItem'],
     });
   }
 
