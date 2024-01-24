@@ -25,7 +25,7 @@ export class Sanity {
           slug
         }
       `,
-      tags: ['menuItem'],
+      tags: ['menuItem', 'page', 'home'],
     });
   }
 
