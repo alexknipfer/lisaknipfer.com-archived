@@ -16,10 +16,10 @@ export class Sanity {
     });
   }
 
-  public getPages(pageTypes = ['page']) {
+  public getDynamicPagesWithHomePage() {
     return this.sanityFetch<Array<SanityPage>>({
       query: `
-        *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
+        *[_type == 'page' || _type == 'home'] | order(sidebarOrder asc) {
           _id,
           title,
           sidebarOrder,
@@ -28,6 +28,21 @@ export class Sanity {
         }
       `,
       tags: ['page', 'home'],
+    });
+  }
+
+  public getDynamicPages() {
+    return this.sanityFetch<Array<SanityPage>>({
+      query: `
+        *[_type == 'page'] | order(sidebarOrder asc) {
+          _id,
+          title,
+          sidebarOrder,
+          sidebarIcon,
+          slug
+        }
+      `,
+      tags: ['page'],
     });
   }
 
