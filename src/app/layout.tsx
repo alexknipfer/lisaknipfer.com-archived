@@ -2,9 +2,6 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
-import Sidebar from '@/components/sidebar';
-import { sanity } from '@/lib/sanity';
-
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -17,13 +14,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const menuItems = await sanity.getMenuItems();
-
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <main className="flex bg-white">
-          <Sidebar menuItems={menuItems} />
           <div>{children}</div>
         </main>
       </body>
