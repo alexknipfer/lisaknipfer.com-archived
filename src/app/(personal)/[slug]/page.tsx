@@ -25,9 +25,5 @@ export default async function DynamicPage({
 }
 
 export async function generateStaticParams() {
-  const pages = await sanity.getPages();
-
-  return pages.map((page) => ({
-    slug: page.slug,
-  }));
+  return sanity.generateStaticSlugs('page');
 }

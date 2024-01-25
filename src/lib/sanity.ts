@@ -36,20 +36,20 @@ export class Sanity {
     });
   }
 
-  public getPages(pageTypes = ['page']) {
-    return this.sanityFetch<Array<SanityPage>>({
-      query: `
-        *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
-          _id,
-          title,
-          sidebarOrder,
-          sidebarIcon,
-          "slug": slug.current
-        }
-      `,
-      tags: ['page', 'home'],
-    });
-  }
+  // public getPages(pageTypes = ['page']) {
+  //   return this.sanityFetch<Array<SanityPage>>({
+  //     query: `
+  //       *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
+  //         _id,
+  //         title,
+  //         sidebarOrder,
+  //         sidebarIcon,
+  //         "slug": slug.current
+  //       }
+  //     `,
+  //     tags: ['page', 'home'],
+  //   });
+  // }
 
   public getHomePage() {
     return this.sanityFetch<SanityPageWithBuilder>({
@@ -76,6 +76,20 @@ export class Sanity {
       },
       tags: [`page:${slug}`],
     });
+  }
+
+  public generateStaticSlugs(type: string) {
+    return this.client
+      .withConfig({
+        perspective: 'published',
+        useCdn: false,
+        stega: false,
+      })
+      .fetch<Array<string>>(
+        `*[_type == $type && defined(slug.current)]{"slug": slug.current}'`,
+        { type },
+        { next: { tags: [type] } },
+      );
   }
 
   private async sanityFetch<QueryResponse>({
