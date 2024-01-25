@@ -86,7 +86,7 @@ export class Sanity {
         stega: false,
       })
       .fetch<Array<string>>(
-        `*[_type == $type && defined(slug.current)]{"slug": slug.current}'`,
+        `*[_type == $type && defined(slug.current)]{"slug": slug.current}`,
         { type },
         { next: { tags: [type] } },
       );
