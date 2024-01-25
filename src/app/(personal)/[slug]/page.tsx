@@ -28,6 +28,6 @@ export async function generateStaticParams() {
   const pages = await sanity.getPages();
 
   return pages.map((page) => ({
-    slug: page.slug.current,
+    slug: page.slug,
   }));
 }
