@@ -29,9 +29,9 @@ export async function POST(req: NextRequest) {
     //   console.info('REVALIDATE TAG: ', `${body._type}:${body.slug}`);
     //   revalidateTag(`${body._type}:${body.slug}`);
     // }
-    revalidatePath('/', 'page');
+    revalidatePath('/(personal)/', 'page');
     if (body.slug) {
-      revalidatePath('/[slug]', 'page');
+      revalidatePath('/(personal)/[slug]', 'page');
     }
 
     return NextResponse.json({ body });
