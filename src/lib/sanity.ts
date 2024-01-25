@@ -1,13 +1,8 @@
 import 'server-only';
-import { createClient, QueryParams, SanityClient } from 'next-sanity';
+import { createClient, QueryParams, SanityClient, groq } from 'next-sanity';
 
 import { appConfig } from '@/config/app-config';
-import {
-  MenuItem,
-  SanityPage,
-  SanityPageWithBuilder,
-  Settings,
-} from '@/types/sanity';
+import { SanityPageWithBuilder, Settings } from '@/types/sanity';
 
 export class Sanity {
   private client: SanityClient;
@@ -23,7 +18,7 @@ export class Sanity {
 
   public getSettings() {
     return this.sanityFetch<Settings>({
-      query: `
+      query: groq`
         *[_type == "settings"][0]{
           menuItems[]->{
             _type,
@@ -36,37 +31,21 @@ export class Sanity {
     });
   }
 
-  // public getPages(pageTypes = ['page']) {
-  //   return this.sanityFetch<Array<SanityPage>>({
-  //     query: `
-  //       *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
-  //         _id,
-  //         title,
-  //         sidebarOrder,
-  //         sidebarIcon,
-  //         "slug": slug.current
-  //       }
-  //     `,
-  //     tags: ['page', 'home'],
-  //   });
-  // }
-
   public getHomePage() {
     return this.sanityFetch<SanityPageWithBuilder>({
-      query: `
+      query: groq`
         *[_type == 'home'][0] {
           title,
           ${this.pageBuilderQuery}
         }
       `,
-      tags: ['home', 'page'],
+      tags: ['home'],
     });
   }
 
   public getPageBySlug(slug: string) {
-    console.log('SLUG: ', `page:${slug}`);
     return this.sanityFetch<SanityPageWithBuilder>({
-      query: `
+      query: groq`
         *[_type == 'page' && slug.current == $slug][0] {
           title,
           ${this.pageBuilderQuery}
@@ -111,7 +90,7 @@ export class Sanity {
   }
 
   private get pageBuilderQuery() {
-    return `
+    return groq`
       pageBuilder[]{
         _type == 'pageDescription' => {
           _type,
@@ -120,7 +99,6 @@ export class Sanity {
         },
         _type == 'timeline' => {
           _type,
-          name,
           timelineYears | order(year desc)
         }
       }
