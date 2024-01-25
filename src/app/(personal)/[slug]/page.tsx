@@ -25,3 +25,7 @@ export default async function DynamicPage({
     </ScrollView>
   );
 }
+
+export async function generateStaticParams() {
+  return sanity.generateStaticSlugs('page');
+}
