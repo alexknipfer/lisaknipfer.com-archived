@@ -59,7 +59,7 @@ export class Sanity {
           ${this.pageBuilderQuery}
         }
       `,
-      tags: ['home'],
+      tags: ['home', 'page'],
     });
   }
 
