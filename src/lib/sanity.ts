@@ -64,6 +64,7 @@ export class Sanity {
   }
 
   public getPageBySlug(slug: string) {
+    console.log('SLUG: ', `page:${slug}`);
     return this.sanityFetch<SanityPageWithBuilder>({
       query: `
         *[_type == 'page' && slug.current == $slug][0] {

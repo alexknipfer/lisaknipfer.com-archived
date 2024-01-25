@@ -24,6 +24,6 @@ export default async function DynamicPage({
   );
 }
 
-export async function generateStaticParams() {
-  return sanity.generateStaticSlugs('page');
-}
+// export async function generateStaticParams() {
+//   return sanity.generateStaticSlugs('page');
+// }
