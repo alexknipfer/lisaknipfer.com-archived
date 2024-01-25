@@ -1,8 +1,8 @@
 import 'server-only';
-import { createClient, QueryParams, SanityClient } from 'next-sanity';
+import { createClient, QueryParams, SanityClient, groq } from 'next-sanity';
 
 import { appConfig } from '@/config/app-config';
-import { MenuItem, SanityPage, SanityPageWithBuilder } from '@/types/sanity';
+import { SanityPageWithBuilder, Settings } from '@/types/sanity';
 
 export class Sanity {
   private client: SanityClient;
@@ -16,37 +16,24 @@ export class Sanity {
     });
   }
 
-  public getMenuItems() {
-    return this.sanityFetch<Array<MenuItem>>({
-      query: `
-        *[_type == 'menuItem'] {
-          title,
-          sidebarIcon,
-          slug
-        }
-      `,
-      tags: ['menuItem', 'page', 'home'],
-    });
-  }
-
-  public getPages(pageTypes = ['page']) {
-    return this.sanityFetch<Array<SanityPage>>({
-      query: `
-        *[${pageTypes.map((pageType) => `_type == '${pageType}'`).join('||')}] | order(sidebarOrder asc) {
-          _id,
-          title,
-          sidebarOrder,
-          sidebarIcon,
-          slug
-        }
-      `,
-      tags: ['page', 'home'],
+  public getSettings() {
+    return this.sanityFetch<Settings>({
+      query: groq`
+        *[_type == "settings"][0]{
+          menuItems[]->{
+            _type,
+            "slug": slug.current,
+            title,
+            sidebarIcon
+          },
+      }`,
+      tags: ['settings', 'page', 'home'],
     });
   }
 
   public getHomePage() {
     return this.sanityFetch<SanityPageWithBuilder>({
-      query: `
+      query: groq`
         *[_type == 'home'][0] {
           title,
           ${this.pageBuilderQuery}
@@ -58,7 +45,7 @@ export class Sanity {
 
   public getPageBySlug(slug: string) {
     return this.sanityFetch<SanityPageWithBuilder>({
-      query: `
+      query: groq`
         *[_type == 'page' && slug.current == $slug][0] {
           title,
           ${this.pageBuilderQuery}
@@ -67,8 +54,22 @@ export class Sanity {
       params: {
         slug,
       },
-      tags: ['page'],
+      tags: [`page:${slug}`],
     });
+  }
+
+  public generateStaticSlugs(type: string) {
+    return this.client
+      .withConfig({
+        perspective: 'published',
+        useCdn: false,
+        stega: false,
+      })
+      .fetch<Array<string>>(
+        `*[_type == $type && defined(slug.current)]{"slug": slug.current}`,
+        { type },
+        { next: { tags: [type] } },
+      );
   }
 
   private async sanityFetch<QueryResponse>({
@@ -89,7 +90,7 @@ export class Sanity {
   }
 
   private get pageBuilderQuery() {
-    return `
+    return groq`
       pageBuilder[]{
         _type == 'pageDescription' => {
           _type,
@@ -98,7 +99,6 @@ export class Sanity {
         },
         _type == 'timeline' => {
           _type,
-          name,
           timelineYears | order(year desc)
         }
       }

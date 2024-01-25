@@ -14,9 +14,14 @@ interface SanityArrayItemBase {
 }
 
 export interface MenuItem {
+  _type: string;
   title: string;
   sidebarIcon: string;
   slug: string | null;
+}
+
+export interface Settings {
+  menuItems: Array<MenuItem>;
 }
 
 export interface SanityPageWithBuilder extends SanityPage {
@@ -28,7 +33,7 @@ export interface SanityPage {
   title: string;
   sidebarOrder: number;
   sidebarIcon: keyof typeof dynamicIconImports;
-  slug: Slug;
+  slug: string;
 }
 
 export interface PageDescriptionContent {
@@ -51,11 +56,5 @@ interface TimelineYear extends SanityArrayItemBase {
 
 export interface Timeline {
   _type: PageContentBuilderType.TIMELINE;
-  name: string;
   timelineYears: Array<TimelineYear>;
-}
-
-export interface Slug {
-  _type: 'slug';
-  current: string;
 }

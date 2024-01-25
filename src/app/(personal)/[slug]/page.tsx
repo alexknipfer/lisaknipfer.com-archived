@@ -5,6 +5,8 @@ import { ScrollView } from '@/components/scroll-view';
 import { PageBuilder } from '@/components/page-builder';
 import { sanity } from '@/lib/sanity';
 
+// TODO: Add generateStaticParams after the following issue is resolved:
+// https://github.com/vercel/next.js/issues/59883
 export default async function DynamicPage({
   params,
 }: {
@@ -22,12 +24,4 @@ export default async function DynamicPage({
       </PageWrapper>
     </ScrollView>
   );
-}
-
-export async function generateStaticParams() {
-  const pages = await sanity.getPages();
-
-  return pages.map((page) => ({
-    slug: page.slug.current,
-  }));
 }

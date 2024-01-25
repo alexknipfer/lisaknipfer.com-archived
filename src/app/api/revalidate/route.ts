@@ -1,4 +1,4 @@
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 import { parseBody } from 'next-sanity/webhook';
 
@@ -24,8 +24,11 @@ export async function POST(req: NextRequest) {
     }
 
     console.info('REVALIDATE TAG: ', body._type);
-    console.info('REVALIDATE BODY', JSON.stringify(body));
     revalidateTag(body._type);
+    if (body.slug) {
+      console.info('REVALIDATE TAG: ', `${body._type}:${body.slug}`);
+      revalidateTag(`${body._type}:${body.slug}`);
+    }
 
     return NextResponse.json({ body });
   } catch (err: any) {
