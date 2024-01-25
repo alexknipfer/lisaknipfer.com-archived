@@ -105,8 +105,7 @@ export class Sanity {
     return this.client.fetch<QueryResponse>(query, params, {
       cache: 'force-cache',
       next: {
-        revalidate: 60,
-        // tags,
+        tags,
       },
     });
   }
