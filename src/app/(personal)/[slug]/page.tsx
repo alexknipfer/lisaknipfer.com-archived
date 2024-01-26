@@ -17,7 +17,9 @@ export default async function DynamicPage({
   return (
     <ScrollView>
       <PageWrapper>
-        <Heading level="h1">{page.title}</Heading>
+        <Heading level="h1" className="mb-6">
+          {page.title}
+        </Heading>
         <PageContent>
           <PageBuilder pageBuilder={page.pageBuilder} />
         </PageContent>
