@@ -35,7 +35,7 @@ export default function Sidebar({ menuItems }: Props) {
   }, [router, menuItems]);
 
   return (
-    <div className="w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm xl:w-72">
+    <div className="hidden w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm lg:block xl:w-72">
       <Link
         href="/"
         className="mb-3 flex gap-3 rounded p-2 transition-colors duration-200 hover:bg-pink-100"
