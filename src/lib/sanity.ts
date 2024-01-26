@@ -99,6 +99,7 @@ export class Sanity {
         },
         _type == 'timeline' => {
           _type,
+          timelineItemIcon,
           timelineYears | order(year desc)
         }
       }

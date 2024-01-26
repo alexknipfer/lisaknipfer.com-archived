@@ -56,5 +56,6 @@ interface TimelineYear extends SanityArrayItemBase {
 
 export interface Timeline {
   _type: PageContentBuilderType.TIMELINE;
+  timelineItemIcon: string;
   timelineYears: Array<TimelineYear>;
 }
