@@ -11,9 +11,9 @@ export function Heading({ level, children, className }: Props) {
 
   return (
     <Tag
-      className={cn(`font-bold ${className}`, {
+      className={cn(`font-semibold ${className ? className : ''}`, {
         'text-2xl md:text-3xl': level === 'h1',
-        'text-xl md:text-2xl': level === 'h2',
+        'text-lg md:text-xl': level === 'h2',
         'text-md md:text-xl': level === 'h3',
         'text-base md:text-lg': level === 'h4',
       })}
