@@ -76,7 +76,7 @@ export class Sanity {
   private async sanityFetch<QueryResponse>({
     query,
     params = {},
-    tags = [],
+    // tags = [],
   }: {
     query: string;
     tags: Array<string>;
