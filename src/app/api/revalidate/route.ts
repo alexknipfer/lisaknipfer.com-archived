@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     if (body.slug) {
       console.info('REVALIDATE TAG: ', `${body._type}:${body.slug}`);
       const test = 'testingtimeline';
-      revalidateTag(`${test}`);
+      revalidateTag(test);
     }
 
     return NextResponse.json({ body });

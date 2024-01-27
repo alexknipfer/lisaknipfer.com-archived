@@ -56,7 +56,7 @@ export class Sanity {
       params: {
         slug,
       },
-      tags: [`${test}`],
+      tags: [test],
     });
   }
 
