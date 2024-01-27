@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
     // revalidateTag('settings');
     // revalidatePath('/timeline');
     // console.info('REVALIDATE TAG: ', body._type);
+    revalidateTag('settings');
     revalidateTag('page');
     // if (body.slug) {
     //   console.info('REVALIDATE TAG: ', `${body._type}:${body.slug}`);

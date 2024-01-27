@@ -11,7 +11,6 @@ export class Sanity {
     this.client = createClient({
       projectId: appConfig.sanity.projectId,
       dataset: appConfig.sanity.dataset,
-      apiVersion: appConfig.sanity.apiVersion,
       useCdn: false,
     });
   }
