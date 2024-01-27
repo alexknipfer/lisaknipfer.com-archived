@@ -17,7 +17,10 @@ export function Timeline({ content }: Props) {
           <section className="col-span-10">
             <div className="flex flex-col">
               {timelineItems.map((timelineItem, index) => (
-                <div key={_key} className="relative flex gap-4 pb-4 last:pb-0">
+                <div
+                  key={timelineItem._key}
+                  className="relative flex gap-4 pb-4 last:pb-0"
+                >
                   {index !== timelineItems.length - 1 && (
                     <div className="absolute inset-0 flex w-6 items-center justify-center pt-6">
                       <div className="h-full border-l border-pink-200" />

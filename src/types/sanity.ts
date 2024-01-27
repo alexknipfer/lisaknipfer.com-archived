@@ -15,6 +15,7 @@ interface SanityArrayItemBase {
 
 export interface MenuItem {
   _type: string;
+  _id: string;
   title: string;
   sidebarIcon: string;
   slug: string | null;

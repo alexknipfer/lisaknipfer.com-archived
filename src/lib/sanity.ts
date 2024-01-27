@@ -21,6 +21,7 @@ export class Sanity {
       query: groq`
         *[_type == "settings"][0]{
           menuItems[]->{
+            _id,
             _type,
             "slug": slug.current,
             title,
@@ -101,8 +102,10 @@ export class Sanity {
           _type,
           timelineItemIcon,
           timelineYears | order(year desc) {
+            _key,
             year,
             timelineItems[] {
+              _key,
               name,
               description,
               image {

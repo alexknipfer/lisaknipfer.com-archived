@@ -30,13 +30,13 @@ export function MenuContent({ menuItems, showHotkeys = true }: Props) {
         </div>
       </Link>
       <div className="flex flex-col gap-1">
-        {menuItems.map(({ title, slug, sidebarIcon }, index) => {
+        {menuItems.map(({ title, slug, sidebarIcon, _id }, index) => {
           const slugPath = getSlugPath(slug);
           const isCurrentPath = pathname === slugPath;
 
           return (
             <Link
-              key={title}
+              key={_id}
               href={slugPath}
               className={cn(
                 'flex items-center justify-between rounded-lg p-2 text-pink-800 transition duration-200',
