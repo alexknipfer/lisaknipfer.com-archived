@@ -11,7 +11,7 @@ export default async function DynamicPageLayout({
   return (
     <div className="flex bg-white">
       <Sidebar menuItems={menuItems} />
-      <div>{children}</div>
+      {children}
     </div>
   );
 }

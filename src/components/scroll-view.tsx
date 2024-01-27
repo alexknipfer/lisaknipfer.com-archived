@@ -2,6 +2,8 @@ import { PropsWithChildren } from 'react';
 
 export function ScrollView({ children }: PropsWithChildren) {
   return (
-    <div className="h-full min-h-dvh max-h-dvh overflow-y-auto">{children}</div>
+    <div className="h-full max-h-dvh min-h-dvh w-full overflow-y-auto">
+      {children}
+    </div>
   );
 }

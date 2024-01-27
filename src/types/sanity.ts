@@ -42,10 +42,12 @@ export interface PageDescriptionContent {
   description: string;
 }
 
-interface TimelineItem extends SanityArrayItemBase {
+export interface TimelineItem extends SanityArrayItemBase {
   _type: PageContentBuilderType.TIMELINE_ITEM;
+  _key: string;
   name: string;
   description: string;
+  image: SanityImage;
 }
 
 interface TimelineYear extends SanityArrayItemBase {
@@ -58,4 +60,23 @@ export interface Timeline {
   _type: PageContentBuilderType.TIMELINE;
   timelineItemIcon: string;
   timelineYears: Array<TimelineYear>;
+}
+
+export interface SanityImage {
+  asset: {
+    url: string;
+    metadata: SanityImageMetadata;
+  };
+}
+
+export interface SanityImageMetadata {
+  isOpaque: boolean;
+  blurHash: string;
+  hasAlpha: boolean;
+  lqip: string;
+  dimensions: {
+    aspectRatio: number;
+    height: number;
+    width: number;
+  };
 }
