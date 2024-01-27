@@ -45,6 +45,7 @@ export class Sanity {
   }
 
   public getPageBySlug(slug: string) {
+    const test = 'testingtimeline';
     return this.sanityFetch<SanityPageWithBuilder>({
       query: groq`
         *[_type == 'page' && slug.current == $slug][0] {
@@ -55,7 +56,7 @@ export class Sanity {
       params: {
         slug,
       },
-      tags: ['testingtimeline'],
+      tags: [`${test}`],
     });
   }
 
