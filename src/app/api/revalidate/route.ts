@@ -24,10 +24,6 @@ export async function POST(req: NextRequest) {
     }
 
     revalidateTag(body._type);
-    // if (body.slug) {
-    //   console.info('REVALIDATE TAG: ', `${body._type}:${body.slug}`);
-    //   revalidateTag(`${body._type}:${body.slug}`);
-    // }
 
     return NextResponse.json({ body });
   } catch (err) {

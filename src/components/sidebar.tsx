@@ -3,15 +3,10 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { getSlugPath } from '@/lib/utils';
 import { MenuContent } from './menu-content';
 import { menuRoutes } from '@/config/route-config';
 
-interface Props {
-  content: unknown;
-}
-
-export default function Sidebar(content: Props) {
+export default function Sidebar() {
   const router = useRouter();
 
   useEffect(() => {
@@ -20,7 +15,7 @@ export default function Sidebar(content: Props) {
         const index = parseInt(event.key, 10) - 1;
 
         if (index < menuRoutes.length) {
-          router.push(getSlugPath(menuRoutes[index].template));
+          router.push(menuRoutes[index].template);
         }
       }
     };
@@ -31,8 +26,6 @@ export default function Sidebar(content: Props) {
       document.removeEventListener('keydown', handleKeydown);
     };
   }, [router]);
-
-  console.warn('content: ', content);
 
   return (
     <div className="hidden w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm lg:block xl:w-72">
