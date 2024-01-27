@@ -91,7 +91,7 @@ export class Sanity {
 
   private get pageBuilderQuery() {
     return groq`
-      pageBuilder[]{
+      pageBuilder[] {
         _type == 'pageDescription' => {
           _type,
           title,
@@ -100,7 +100,19 @@ export class Sanity {
         _type == 'timeline' => {
           _type,
           timelineItemIcon,
-          timelineYears | order(year desc)
+          timelineYears | order(year desc) {
+            year,
+            timelineItems[] {
+              name,
+              description,
+              image {
+                asset->{
+                  url,
+                  metadata
+                }
+              }
+            }
+          }
         }
       }
     `;
