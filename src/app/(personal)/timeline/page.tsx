@@ -6,14 +6,8 @@ import { PageBuilder } from '@/components/page-builder';
 import { sanity } from '@/lib/sanity';
 import { Header } from '@/components/header';
 
-// TODO: Add generateStaticParams after the following issue is resolved:
-// https://github.com/vercel/next.js/issues/59883
-export default async function DynamicPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const page = await sanity.getPageBySlug(params.slug);
+export default async function Timeline() {
+  const page = await sanity.getPageBySlug('timeline');
 
   return (
     <ScrollView>

@@ -3,15 +3,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { MenuItem } from '@/types/sanity';
-import { cn, getSlugPath } from '@/lib/utils';
+import { cn } from '@/lib/utils';
+import { menuRoutes } from '@/config/route-config';
 
 interface Props {
-  menuItems: Array<MenuItem>;
   showHotkeys?: boolean;
 }
 
-export function MenuContent({ menuItems, showHotkeys = true }: Props) {
+export function MenuContent({ showHotkeys = true }: Props) {
   const pathname = usePathname();
 
   return (
@@ -30,14 +29,14 @@ export function MenuContent({ menuItems, showHotkeys = true }: Props) {
         </div>
       </Link>
       <div className="flex flex-col gap-1">
-        {menuItems.map(({ title, slug, sidebarIcon, _id }, index) => {
-          const slugPath = getSlugPath(slug);
-          const isCurrentPath = pathname === slugPath;
+        {menuRoutes.map(({ label, template, icon }, index) => {
+          const isCurrentPath = pathname === template;
+          const Icon = icon;
 
           return (
             <Link
-              key={_id}
-              href={slugPath}
+              key={template}
+              href={template}
               className={cn(
                 'flex items-center justify-between rounded-lg p-2 text-pink-800 transition duration-200',
                 {
@@ -47,11 +46,8 @@ export function MenuContent({ menuItems, showHotkeys = true }: Props) {
               )}
             >
               <span className="flex items-center gap-2">
-                <span
-                  className="h-4 w-4"
-                  dangerouslySetInnerHTML={{ __html: sidebarIcon }}
-                />
-                <span className="font-medium">{title}</span>
+                <Icon size={16} />
+                <span className="font-medium">{label}</span>
               </span>
               {showHotkeys && (
                 <span

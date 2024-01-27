@@ -3,15 +3,10 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { getSlugPath } from '@/lib/utils';
-import { MenuItem } from '@/types/sanity';
 import { MenuContent } from './menu-content';
+import { menuRoutes } from '@/config/route-config';
 
-interface Props {
-  menuItems: Array<MenuItem>;
-}
-
-export default function Sidebar({ menuItems }: Props) {
+export default function Sidebar() {
   const router = useRouter();
 
   useEffect(() => {
@@ -19,8 +14,8 @@ export default function Sidebar({ menuItems }: Props) {
       if (event.key.match(/^\d+$/)) {
         const index = parseInt(event.key, 10) - 1;
 
-        if (index < menuItems.length) {
-          router.push(getSlugPath(menuItems[index].slug));
+        if (index < menuRoutes.length) {
+          router.push(menuRoutes[index].template);
         }
       }
     };
@@ -30,11 +25,11 @@ export default function Sidebar({ menuItems }: Props) {
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, [router, menuItems]);
+  }, [router]);
 
   return (
     <div className="hidden w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm lg:block xl:w-72">
-      <MenuContent menuItems={menuItems} />
+      <MenuContent />
     </div>
   );
 }

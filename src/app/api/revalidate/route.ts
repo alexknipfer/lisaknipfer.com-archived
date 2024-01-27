@@ -23,12 +23,7 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
 
-    console.info('REVALIDATE TAG: ', body._type);
     revalidateTag(body._type);
-    if (body.slug) {
-      console.info('REVALIDATE TAG: ', `${body._type}:${body.slug}`);
-      revalidateTag(`${body._type}:${body.slug}`);
-    }
 
     return NextResponse.json({ body });
   } catch (err) {
