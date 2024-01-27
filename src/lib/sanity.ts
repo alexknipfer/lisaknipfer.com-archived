@@ -76,7 +76,7 @@ export class Sanity {
   private async sanityFetch<QueryResponse>({
     query,
     params = {},
-    // tags = [],
+    tags = [],
   }: {
     query: string;
     tags: Array<string>;
@@ -85,7 +85,7 @@ export class Sanity {
     return this.client.fetch<QueryResponse>(query, params, {
       cache: 'force-cache',
       next: {
-        revalidate: 30,
+        tags,
       },
     });
   }
