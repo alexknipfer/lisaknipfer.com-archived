@@ -20,15 +20,9 @@ export class Sanity {
     return this.sanityFetch<Settings>({
       query: groq`
         *[_type == "settings"][0]{
-          menuItems[]->{
-            _id,
-            _type,
-            "slug": slug.current,
-            title,
-            sidebarIcon
-          },
+          menuItems
       }`,
-      tags: ['settings', 'home'],
+      tags: ['settings'],
     });
   }
 

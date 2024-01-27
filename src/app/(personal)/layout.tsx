@@ -6,12 +6,12 @@ export default async function DynamicPageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { menuItems } = await sanity.getSettings();
+  const content = await sanity.getSettings();
 
   return (
     <>
       <div className="flex bg-white">
-        <Sidebar menuItems={menuItems} />
+        <Sidebar content={content} />
         {children}
       </div>
     </>
