@@ -9,9 +9,11 @@ export default async function DynamicPageLayout({
   const { menuItems } = await sanity.getSettings();
 
   return (
-    <div className="flex bg-white">
-      <Sidebar menuItems={menuItems} />
-      {children}
-    </div>
+    <>
+      <div className="flex bg-white">
+        <Sidebar menuItems={menuItems} />
+        {children}
+      </div>
+    </>
   );
 }

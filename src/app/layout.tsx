@@ -17,7 +17,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        <main>{children}</main>
+        <main vaul-drawer-wrapper="">{children}</main>
       </body>
     </html>
   );

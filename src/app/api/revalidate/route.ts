@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 import { parseBody } from 'next-sanity/webhook';
 
@@ -31,8 +31,10 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ body });
-  } catch (err: any) {
+  } catch (err) {
     console.error(err);
-    return new Response(err.message, { status: 500 });
+    return new Response(err instanceof Error ? err.message : 'Unknown Error', {
+      status: 500,
+    });
   }
 }

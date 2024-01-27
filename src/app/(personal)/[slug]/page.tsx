@@ -4,6 +4,7 @@ import { PageWrapper } from '@/components/page-wrapper';
 import { ScrollView } from '@/components/scroll-view';
 import { PageBuilder } from '@/components/page-builder';
 import { sanity } from '@/lib/sanity';
+import { Header } from '@/components/header';
 
 // TODO: Add generateStaticParams after the following issue is resolved:
 // https://github.com/vercel/next.js/issues/59883
@@ -16,6 +17,7 @@ export default async function DynamicPage({
 
   return (
     <ScrollView>
+      <Header />
       <PageWrapper>
         <Heading level="h1" className="mb-6">
           {page.title}
