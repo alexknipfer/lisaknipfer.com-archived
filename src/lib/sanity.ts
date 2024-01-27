@@ -28,7 +28,7 @@ export class Sanity {
             sidebarIcon
           },
       }`,
-      tags: ['settings', 'page', 'home'],
+      tags: ['settings', 'home'],
     });
   }
 
