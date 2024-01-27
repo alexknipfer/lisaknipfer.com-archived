@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
 
-    revalidatePath('timeline');
+    revalidatePath('/timeline');
     // console.info('REVALIDATE TAG: ', body._type);
     // revalidateTag(body._type);
     // if (body.slug) {
