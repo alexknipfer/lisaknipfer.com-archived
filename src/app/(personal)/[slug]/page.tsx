@@ -6,6 +6,8 @@ import { PageBuilder } from '@/components/page-builder';
 import { sanity } from '@/lib/sanity';
 import { Header } from '@/components/header';
 
+export const dynamic = 'auto';
+
 // TODO: Add generateStaticParams after the following issue is resolved:
 // https://github.com/vercel/next.js/issues/59883
 export default async function DynamicPage({
