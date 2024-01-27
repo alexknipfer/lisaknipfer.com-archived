@@ -6,6 +6,10 @@ import { PageBuilder } from '@/components/page-builder';
 import { sanity } from '@/lib/sanity';
 import { Header } from '@/components/header';
 
+export function generateStaticParams() {
+  return sanity.generateStaticSlugs('page');
+}
+
 // TODO: Add generateStaticParams after the following issue is resolved:
 // https://github.com/vercel/next.js/issues/59883
 export default async function DynamicPage({
@@ -28,8 +32,4 @@ export default async function DynamicPage({
       </PageWrapper>
     </ScrollView>
   );
-}
-
-export function generateStaticParams() {
-  return sanity.generateStaticSlugs('page');
 }
