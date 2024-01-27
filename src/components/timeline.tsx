@@ -9,7 +9,7 @@ interface Props {
 export function Timeline({ content }: Props) {
   return (
     <div className="flex flex-col gap-10">
-      {content.timelineYears.map(({ year, timelineItems, _key }, index) => (
+      {content.timelineYears.map(({ year, timelineItems, _key }) => (
         <div key={_key} className="grid gap-4 md:grid-cols-12 md:gap-12">
           <div className="col-span-2 flex items-baseline">
             <Heading level="h2">{year}</Heading>

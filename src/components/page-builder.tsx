@@ -1,8 +1,4 @@
-import {
-  PageContentBuilderType,
-  PageContentType,
-  SanityPageWithBuilder,
-} from '@/types/sanity';
+import { PageContentBuilderType, SanityPageWithBuilder } from '@/types/sanity';
 
 import { PageDescription as PageDescriptionComponent } from '@/components/page-description';
 import { Timeline as TimelineComponent } from '@/components/timeline';
