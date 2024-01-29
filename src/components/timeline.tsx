@@ -35,7 +35,7 @@ export function Timeline({ content }: Props) {
                   </div>
                   <TimelineItem
                     timelineItem={timelineItem}
-                    isPriorityImage={index < 3}
+                    isPriorityImage={index < 1}
                   />
                 </div>
               ))}
