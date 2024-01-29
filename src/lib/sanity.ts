@@ -1,17 +1,17 @@
 import 'server-only';
 import { createClient, QueryParams, SanityClient, groq } from 'next-sanity';
 
-import { appConfig } from '@/config/app-config';
 import { SanityPageWithBuilder, Settings } from '@/types/sanity';
+import { env } from '@/env/client';
 
 export class Sanity {
   private client: SanityClient;
 
   constructor() {
     this.client = createClient({
-      projectId: appConfig.sanity.projectId,
-      dataset: appConfig.sanity.dataset,
-      apiVersion: appConfig.sanity.apiVersion,
+      projectId: env.PUBLIC_SANITY_PROJECT_ID,
+      dataset: env.PUBLIC_SANITY_DATASET,
+      apiVersion: env.PUBLIC_SANITY_API_VERSION,
       useCdn: false,
     });
   }
