@@ -1,4 +1,4 @@
-import { Home, CalendarDays } from 'lucide-react';
+import { Home, CalendarDays, Music } from 'lucide-react';
 
 export const routeConfig = {
   home: {
@@ -11,6 +11,15 @@ export const routeConfig = {
     template: '/timeline',
     icon: CalendarDays,
   },
+  tracks: {
+    label: 'My Hot Jams',
+    template: '/tracks',
+    icon: Music,
+  },
 };
 
-export const menuRoutes = [routeConfig.home, routeConfig.timeline];
+export const menuRoutes = [
+  routeConfig.home,
+  routeConfig.timeline,
+  routeConfig.tracks,
+];
