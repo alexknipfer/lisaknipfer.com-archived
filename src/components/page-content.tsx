@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
 
-export default function PageContent({ children }: PropsWithChildren) {
-  return <div className="mt-3">{children}</div>;
+export function PageContent({ children }: PropsWithChildren) {
+  return <div className="mt-3 max-w-screen-md">{children}</div>;
 }

@@ -1,6 +1,6 @@
-import { Home, CalendarDays } from 'lucide-react';
+import { Home, CalendarDays, Music } from 'lucide-react';
 
-export const RouteConfig = {
+export const routeConfig = {
   home: {
     label: 'Home',
     template: '/',
@@ -11,6 +11,15 @@ export const RouteConfig = {
     template: '/timeline',
     icon: CalendarDays,
   },
+  tracks: {
+    label: 'My Hot Jams',
+    template: '/tracks',
+    icon: Music,
+  },
 };
 
-export const SidebarRoutes = [RouteConfig.home, RouteConfig.timeline];
+export const menuRoutes = [
+  routeConfig.home,
+  routeConfig.timeline,
+  routeConfig.tracks,
+];
