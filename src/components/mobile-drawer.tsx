@@ -3,8 +3,11 @@ import { AlignLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { MenuContent } from '@/components/menu-content';
+import { sanity } from '@/lib/sanity.client';
 
-export function MobileDrawer() {
+export async function MobileDrawer() {
+  const settings = await sanity.getSettings();
+
   return (
     <Drawer shouldScaleBackground>
       <DrawerTrigger asChild>
@@ -17,7 +20,7 @@ export function MobileDrawer() {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="h-[50%] p-2 md:p-4">
-        <MenuContent showHotkeys={false} />
+        <MenuContent showHotkeys={false} settings={settings} />
       </DrawerContent>
     </Drawer>
   );
