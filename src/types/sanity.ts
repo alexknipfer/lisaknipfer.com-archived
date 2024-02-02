@@ -13,16 +13,16 @@ interface SanityArrayItemBase {
   _key: string;
 }
 
-export interface MenuItem {
+export interface SocialItem {
   _type: string;
-  _id: string;
-  title: string;
-  sidebarIcon: string;
-  slug: string | null;
+  _key: string;
+  label: string;
+  link: string;
+  icon: string;
 }
 
 export interface Settings {
-  menuItems: Array<MenuItem>;
+  socialItems: Array<SocialItem>;
 }
 
 export interface SanityPageWithBuilder extends SanityPage {
