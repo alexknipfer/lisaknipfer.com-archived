@@ -31,7 +31,7 @@ const pageBuilderQuery = groq`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
-    menuItems
+    socialItems
   }
 `;
 export const homeQuery = groq`

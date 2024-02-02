@@ -5,8 +5,13 @@ import { useRouter } from 'next/navigation';
 
 import { MenuContent } from './menu-content';
 import { menuRoutes } from '@/config/route-config';
+import { Settings } from '@/types/sanity';
 
-export default function Sidebar() {
+interface Props {
+  settings: Settings;
+}
+
+export default function Sidebar({ settings }: Props) {
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +34,7 @@ export default function Sidebar() {
 
   return (
     <div className="hidden w-60 shrink-0 border-r border-zinc-200 bg-zinc-50 p-3 text-sm lg:block xl:w-72">
-      <MenuContent />
+      <MenuContent settings={settings} />
     </div>
   );
 }
