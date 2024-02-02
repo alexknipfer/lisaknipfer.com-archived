@@ -13,7 +13,7 @@ interface Props {
   settings: Settings;
 }
 
-export async function MenuContent({ settings, showHotkeys = true }: Props) {
+export function MenuContent({ settings, showHotkeys = true }: Props) {
   const pathname = usePathname();
 
   return (
