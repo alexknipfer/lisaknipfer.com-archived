@@ -24,7 +24,7 @@ export class Sanity {
   public getSettings() {
     return this.sanityFetch<Settings>({
       query: settingsQuery,
-      tags: ['settings'],
+      tags: ['settings', 'page'],
     });
   }
 
