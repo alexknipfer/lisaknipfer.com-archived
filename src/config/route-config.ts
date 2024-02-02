@@ -1,4 +1,4 @@
-import { Home, CalendarDays, Music } from 'lucide-react';
+import { Home, CalendarDays, PlayCircle } from 'lucide-react';
 
 export const routeConfig = {
   home: {
@@ -14,7 +14,7 @@ export const routeConfig = {
   tracks: {
     label: 'My Hot Jams',
     template: '/tracks',
-    icon: Music,
+    icon: PlayCircle,
   },
 };
 

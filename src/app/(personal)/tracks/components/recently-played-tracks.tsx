@@ -30,7 +30,7 @@ export async function RecentlyPlayedTracks() {
             <TableHead className="min-w-[70px]" />
             <TableHead className="min-w-[150px]">Song</TableHead>
             <TableHead className="hidden min-w-[150px] md:table-cell">
-              Album
+              Artist(s)
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -65,7 +65,7 @@ export async function RecentlyPlayedTracks() {
                   </span>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                  {track.album.name}
+                  {track.artists.map((artist) => artist.name).join(', ')}
                 </TableCell>
               </TableRow>
             );
