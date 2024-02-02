@@ -37,6 +37,9 @@ export async function RecentlyPlayedTracks() {
         <TableBody>
           {tracks.items.map(({ track }) => {
             const image = getSmallestTrackImage(track);
+            const artists = track.artists
+              .map((artist) => artist.name)
+              .join(', ');
 
             return (
               <TableRow key={track.id}>
@@ -60,12 +63,10 @@ export async function RecentlyPlayedTracks() {
                   >
                     {track.name}
                   </a>
-                  <span className="text-gray-500 md:hidden">
-                    {track.album.name}
-                  </span>
+                  <span className="text-gray-500 md:hidden">{artists}</span>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                  {track.artists.map((artist) => artist.name).join(', ')}
+                  {artists}
                 </TableCell>
               </TableRow>
             );
