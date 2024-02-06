@@ -19,8 +19,10 @@ export async function MobileDrawer() {
           <AlignLeft size={20} className="group-hover:stroke-white" />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="h-[50%] p-2 md:p-4">
-        <MenuContent showHotkeys={false} settings={settings} />
+      <DrawerContent className="h-[70%]">
+        <div className="overflow-y-auto p-2 md:p-4">
+          <MenuContent showHotkeys={false} settings={settings} />
+        </div>
       </DrawerContent>
     </Drawer>
   );
