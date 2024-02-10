@@ -25,6 +25,10 @@ const pageBuilderQuery = groq`
           }
         }
       }
+    },
+    _type == 'personalInformation' => {
+      _type,
+      personalList
     }
   }
 `;
@@ -34,6 +38,7 @@ export const settingsQuery = groq`
     socialItems
   }
 `;
+
 export const homeQuery = groq`
   *[_type == 'home'][0] {
     title,

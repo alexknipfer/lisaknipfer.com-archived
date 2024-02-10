@@ -1,10 +1,12 @@
 import type dynamicIconImports from 'lucide-react/dynamicIconImports';
+import type { PortableTextBlock } from '@portabletext/types';
 
 export enum PageContentBuilderType {
   PAGE_DESCRIPTION = 'pageDescription',
   TIMELINE = 'timeline',
   TIMELINE_YEAR = 'timelineYear',
   TIMELINE_ITEM = 'timelineItem',
+  PERSONAL_INFORMATION = 'personalInformation',
 }
 
 export type PageContentType = PageDescriptionContent | Timeline;
@@ -26,7 +28,7 @@ export interface Settings {
 }
 
 export interface SanityPageWithBuilder extends SanityPage {
-  pageBuilder: Array<PageDescriptionContent | Timeline>;
+  pageBuilder: Array<PageDescriptionContent | Timeline | PersonalInformation>;
 }
 
 export interface SanityPage {
@@ -61,6 +63,17 @@ export interface Timeline {
   _type: PageContentBuilderType.TIMELINE;
   timelineItemIcon: string;
   timelineYears: Array<TimelineYear>;
+}
+
+export interface PersonalInformation {
+  _type: PageContentBuilderType.PERSONAL_INFORMATION;
+  personalList: Array<PersonalListItem>;
+}
+
+interface PersonalListItem extends SanityArrayItemBase {
+  _type: string;
+  title: string;
+  listItem: Array<PortableTextBlock>;
 }
 
 export interface SanityImage {
